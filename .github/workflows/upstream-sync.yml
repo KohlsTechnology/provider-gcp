@@ -1,0 +1,15 @@
+on:
+  schedule:
+  - cron:  "*/15 * * * *"
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Sync with upstream
+      uses: repo-sync/github-sync@v2
+      with:
+        source_repo: "https://github.com/kubernetes-sigs/external-dns.git"
+        source_branch: "*"
+        destination_branch: "*"
+        github_token: ${{ secrets.UPSTREAM_SYNC }}
