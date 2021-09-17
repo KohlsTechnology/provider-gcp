@@ -29,6 +29,7 @@ import (
 	"github.com/crossplane/provider-gcp/pkg/controller/config"
 	"github.com/crossplane/provider-gcp/pkg/controller/container"
 	"github.com/crossplane/provider-gcp/pkg/controller/database"
+	"github.com/crossplane/provider-gcp/pkg/controller/dns"
 	"github.com/crossplane/provider-gcp/pkg/controller/iam"
 	"github.com/crossplane/provider-gcp/pkg/controller/kms"
 	"github.com/crossplane/provider-gcp/pkg/controller/pubsub"
@@ -44,9 +45,11 @@ func Setup(mgr ctrl.Manager, l logging.Logger, rl workqueue.RateLimiter, poll ti
 		compute.SetupGlobalAddress,
 		compute.SetupNetwork,
 		compute.SetupSubnetwork,
+		compute.SetupFirewall,
 		container.SetupCluster,
 		container.SetupNodePool,
 		database.SetupCloudSQLInstance,
+		dns.SetupResourceRecordSet,
 		iam.SetupServiceAccount,
 		iam.SetupServiceAccountKey,
 		iam.SetupServiceAccountPolicy,
